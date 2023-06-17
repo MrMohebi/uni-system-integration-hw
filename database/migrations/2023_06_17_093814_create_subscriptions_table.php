@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('userId')->constrained('users');
             $table->foreignId('channelId')->constrained('channels');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

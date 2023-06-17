@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Models\User
@@ -21,7 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $token
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
+ * @property-read Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
  * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
@@ -42,11 +45,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 class User extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
 
     protected $guarded = [];
-
+    protected $appends = array('subs');
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -66,4 +69,27 @@ class User extends Model
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+    public function getSubsAttribute(): array|Collection|\Illuminate\Support\Collection
+    {
+        return Subscription::where("subscriptions.userId", $this->id)
+            ->join('channels', 'subscriptions.channelId', '=', 'channels.id')
+            ->join('users', 'subscriptions.userId', '=', 'users.id')
+            ->select('channels.id as channelId' , 'channels.title as channelTitle')
+            ->get();
+    }
+
+    public function setSubsAttribute(array $value): void
+    {
+        Subscription::where("userId",$this->id)->delete();
+        foreach ($value as $item){
+            Subscription::create([
+                "userId"=>$this->id,
+                "channelId"=>$item,
+            ]);
+        }
+    }
+
+
 }

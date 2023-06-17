@@ -10,6 +10,17 @@ use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
+    public function show(Request $request): JsonResponse
+    {
+        $token = $request->header('token');
+        if($user = User::where('token', $token)->first()) {
+            return Response::json($user);
+        }else{
+            return Response::json([], 404);
+        }
+
+    }
+
     public function login(Request $request): JsonResponse
     {
         $username = $request->input('username');
@@ -55,6 +66,7 @@ class UserController extends Controller
         $password = $request->input('password');
         $phone = $request->input('phone');
         $email = $request->input('email');
+        $subs = json_decode($request->input('subs'));
         $token = $request->header('token');
 
         User::where("token", $token)->update([
@@ -66,6 +78,7 @@ class UserController extends Controller
         ]);
 
         $user = User::where("token", $token)->first();
+        $user->subs = $subs;
         return Response::json($user);
     }
 }

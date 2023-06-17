@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('token')->unique();
             $table->boolean('isAdmin')->default(false);
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

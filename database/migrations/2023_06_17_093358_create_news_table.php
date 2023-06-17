@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('description');
             $table->boolean('isConfirmed')->default(false);
             $table->timestamps();
+            $table->softDeletes();
             $table->foreignId('channelId')->constrained('channels');
             $table->foreignId('creatorId')->constrained('users');
         });
