@@ -1,0 +1,26 @@
+version: '3.3'
+
+services:
+  mysql:
+    container_name: mysql
+    image: docker.iranrepo.ir/mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: 4vqB53k5BKr9k5kLSZtX
+      MYSQL_ROOT_HOST: "%"
+      sort_buffer_size: 256K
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  rabbitmq:
+    image: docker.iranrepo.ir/rabbitmq:management
+    container_name: rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=root
+      - RABBITMQ_DEFAULT_PASS=4vqB53k5BKr9
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+volumes:
+  mysql_data:
