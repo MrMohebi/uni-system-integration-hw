@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('description');
-            $table->boolean('isConfirmed');
+            $table->boolean('isConfirmed')->default(false);
             $table->timestamps();
             $table->foreignId('channelId')->constrained('channels');
             $table->foreignId('creatorId')->constrained('users');
