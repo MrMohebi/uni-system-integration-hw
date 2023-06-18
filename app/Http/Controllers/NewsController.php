@@ -53,4 +53,13 @@ class NewsController extends Controller
         return Response::json($news);
     }
 
+    public function confirm(string $id): JsonResponse
+    {
+        $news = News::find($id)->update([
+            "isConfirmed"=>true,
+        ]);
+
+        return Response::json($news);
+    }
+
 }
