@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ChannelsController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\UpdateProfileTicketController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,4 +23,5 @@ Route::post('/user/signup', [UserController::class, 'signup']);
 Route::get('/channels/list', [ChannelsController::class, 'list']);
 
 Route::get('/news-club/account', [UserController::class, 'show']);
-Route::put('/user/update', [UserController::class, 'update']);
+Route::put('/news-club/update-account-ticket', [UpdateProfileTicketController::class, 'updateAccount']);
+Route::delete('/news-club/delete-account-ticket', [UpdateProfileTicketController::class, 'removeAccount']);

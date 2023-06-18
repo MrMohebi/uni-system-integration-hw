@@ -41,6 +41,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
+ * @property string $username
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property \Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection|array $subs
+ * @method static \Illuminate\Database\Eloquent\Builder|User onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereUsername($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|User withoutTrashed()
  * @mixin \Eloquent
  */
 class User extends Model

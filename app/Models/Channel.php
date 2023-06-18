@@ -23,6 +23,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Channel whereKey($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Channel whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Channel whereUpdatedAt($value)
+ * @property string|null $deleted_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Channel whereDeletedAt($value)
  * @mixin \Eloquent
  */
 class Channel extends Model

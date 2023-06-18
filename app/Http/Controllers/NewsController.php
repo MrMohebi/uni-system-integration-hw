@@ -8,4 +8,5 @@ use Illuminate\Support\Facades\Response;
 
 class NewsController extends Controller
 {
+
 }

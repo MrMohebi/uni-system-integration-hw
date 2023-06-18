@@ -23,6 +23,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|Subscription whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Subscription whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Subscription whereUserId($value)
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\Models\Channel|null $channel
+ * @property-read \App\Models\User|null $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Subscription onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Subscription whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Subscription withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Subscription withoutTrashed()
  * @mixin \Eloquent
  */
 class Subscription extends Model

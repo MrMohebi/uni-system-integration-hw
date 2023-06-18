@@ -26,6 +26,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|Ticket whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Ticket whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Ticket whereUserId($value)
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Ticket onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Ticket whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Ticket withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Ticket withoutTrashed()
  * @mixin \Eloquent
  */
 class Ticket extends Model
