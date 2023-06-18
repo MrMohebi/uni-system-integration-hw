@@ -25,3 +25,10 @@ Route::get('/channels/list', [ChannelsController::class, 'list']);
 Route::get('/news-club/account', [UserController::class, 'show']);
 Route::put('/news-club/update-account-ticket', [UpdateProfileTicketController::class, 'updateAccount']);
 Route::delete('/news-club/delete-account-ticket', [UpdateProfileTicketController::class, 'removeAccount']);
+
+
+Route::post('/news-club/post-news-ticket', [NewsController::class, 'new']);
+Route::get('/news-club/last-news/{channelId}', [NewsController::class, 'last']);
+
+
+
